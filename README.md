@@ -4,8 +4,9 @@
 ### Lets make sure you don't forget to document this time.
 
 - [About](#about)
-- [Usage](#usage)
 - [Installation](#installation)
+- [Usage](#usage)
+- [Options](#options)
 
 ## About
 <b>DocUMust</b> is a CLI tool that warns you about
@@ -16,6 +17,8 @@ guidelines.
 <p align="center">
     <img src="https://raw.githubusercontent.com/tsarpaul/documust/master/documust-gif.gif" alt="DocUMust Demo gif">
 </p>
+
+Rekt, no more excuses for not documenting.
 
 ## Installation
 
