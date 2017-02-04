@@ -1,7 +1,7 @@
 # DocUMust
-<p style="font-size:12px">(or DocuMust?)</p>
+<p style="font-size:10px">(or DocuMust?)</p>
 
-#### Lets make sure you don't forget to document this time.
+### Lets make sure you don't forget to document this time.
 
 - [About](#about)
 - [Usage](#usage)
