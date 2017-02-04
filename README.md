@@ -13,7 +13,7 @@
 ## About
 <b>DocUMust</b> is a CLI tool that warns you about
 undocumented modules/classes/functions in your project
-following [PEP 257](#https://www.python.org/dev/peps/pep-0257)
+following [PEP 257](https://www.python.org/dev/peps/pep-0257)
 guidelines.
 
 <p align="center">
