@@ -2,7 +2,7 @@
 
 import fnmatch
 import os
-import queue  # Queue in py2
+from six.moves import queue
 
 
 def matches_in_path(path, recursively, match):

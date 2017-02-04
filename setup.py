@@ -5,20 +5,20 @@ with open(os.path.join(os.path.dirname(__file__), 'requirements.txt')) as requir
     required = required_file.read().splitlines()
 
 setup(
-    name='smart-deploy',
-    version='0.2.0.5',
-    packages=['smart_deploy'],
-    description='A solution for automating your serverless lambda deployment!',
+    name='DocUMust',
+    version='0.0.1',
+    packages=['documust'],
+    description="Lets make sure you don't forget to document this time.",
     author='Paul Litvak',
     author_email='litvakpol@012.net.il',
     install_requires=required,
     include_package_data=True,
-    url='https://github.com/tsarpaul/serverless-smart-deploy',
+    url='https://github.com/tsarpaul/DocUMust',
     license='MIT License',
-    keywords=['automate', 'serverless', 'deploy'],
+    keywords=['documentation', 'python', 'tool'],
     entry_points={
         'console_scripts': [
-            'smart-deploy=smart_deploy.cli:handle'
+            'documust=documust.cli:handle'
         ]
     },
     classifiers=[

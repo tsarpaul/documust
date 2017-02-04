@@ -4,6 +4,8 @@ import os
 import ast
 import argparse
 
+from six.moves import input
+
 from documust.utils import path_utils
 
 
@@ -58,14 +60,15 @@ class DocUMustCLI(object):
         for tree_obj in tree_objs:
             if not tree_obj['documented']:
                 printed = True
-                print("{relative_path}:{obj_name} {obj_type} has no documentation!".format(
-                    relative_path=relative_path, obj_name=tree_obj['name'], obj_type=tree_obj['type']))
+                print("{relative_path}:{obj_name}[{lineno}:{col_offset}] {obj_type} has no documentation!".format(
+                    relative_path=relative_path, obj_name=tree_obj['name'], obj_type=tree_obj['type'],
+                    lineno=tree_obj['lineno'], col_offset=tree_obj['col_offset']))
 
             printed = self.print_obj_warnings(relative_path + ":" + tree_obj['name'], tree_obj['nodes']) or printed
         return printed
 
     def is_documentation(self, header):
-        """Returns False if module undocumented else True"""
+        """Returns True if module documented else False"""
         try:
             assert isinstance(header, ast.Expr)
             assert isinstance(header.value, ast.Str)
