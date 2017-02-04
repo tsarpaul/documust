@@ -1,0 +1,10 @@
+# Compiled files
+*.pyc
+
+# PyCharm settings
+.idea/
+
+# Distribution
+dist/
+build/
+*.egg-info/
