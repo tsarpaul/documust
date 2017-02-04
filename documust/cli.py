@@ -5,6 +5,7 @@ import ast
 import argparse
 
 from six.moves import input
+import crayons
 
 from documust.utils import path_utils
 
@@ -45,14 +46,14 @@ class DocUMustCLI(object):
                 tree_objs = self.get_tree_objs(tree.body)
 
                 if not module_documented:
-                    print(relative_path + " module has no documentation!")
+                    print(crayons.red(relative_path, bold=True) + crayons.yellow(" module") + " has no documentation!")
                 printed = self.print_obj_warnings(relative_path, tree_objs)
                 if printed:
-                    warn_triggered = printed
+                    warn_triggered = True
                     print('')
 
         if not warn_triggered:
-            print('Everything is documented! Great job!')
+            print(crayons.green('Everything is documented! Great job!'))
 
     def print_obj_warnings(self, relative_path, tree_objs):
         """Prints undocumented objects, returns True if something was printed"""
@@ -60,9 +61,11 @@ class DocUMustCLI(object):
         for tree_obj in tree_objs:
             if not tree_obj['documented']:
                 printed = True
-                print("{relative_path}:{obj_name}[{lineno}:{col_offset}] {obj_type} has no documentation!".format(
-                    relative_path=relative_path, obj_name=tree_obj['name'], obj_type=tree_obj['type'],
-                    lineno=tree_obj['lineno'], col_offset=tree_obj['col_offset']))
+                print(crayons.red(
+                    "{relative_path}:{obj_name}".format(relative_path=relative_path, obj_name=tree_obj['name']),
+                    bold=True) + "[{lineno}:{col_offset}] {obj_type} has no documentation!".format(
+                    obj_type=crayons.yellow(tree_obj['type']), lineno=tree_obj['lineno'],
+                    col_offset=tree_obj['col_offset']))
 
             printed = self.print_obj_warnings(relative_path + ":" + tree_obj['name'], tree_obj['nodes']) or printed
         return printed
