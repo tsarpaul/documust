@@ -1,4 +1,5 @@
-# DocUMust (or DocuMust?)
+# DocUMust <p style="font-size:10px">(or DocuMust?)</p>
+
 #### Lets make sure you don't forget to document this time.
 
 - [About](#about)
