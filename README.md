@@ -28,9 +28,9 @@ You can install <b>documust</b> with pip:
 
 > cd Project/
 >
-> documust -r
+> documust
 
 
 ## Options
 
-- -r: Run recursively over your project
+- -f: Run non-recursively over your project
