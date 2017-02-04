@@ -12,7 +12,7 @@ following [PEP 257](#https://www.python.org/dev/peps/pep-0257)
 guidelines.
 
 <p align="center">
-    <img src="https://github.com/tsarpaul/raw/master/documust-gif.gif" alt="DocUMust Demo gif">
+    <img src="https://raw.githubusercontent.com/tsarpaul/documust/master/documust-gif.gif" alt="DocUMust Demo gif">
 </p>
 
 ## Installation
