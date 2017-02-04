@@ -5,7 +5,6 @@ import ast
 import argparse
 
 from documust.utils import path_utils
-from documust.utils import tree_utils
 
 
 class DocUMustCLI(object):
@@ -40,8 +39,8 @@ class DocUMustCLI(object):
             tree = ast.parse(source, module_path)
 
             if tree.body:  # Module isn't empty
-                module_documented = tree_utils.is_documentation(tree.body[0])
-                tree_objs = tree_utils.get_tree_objs(tree.body)
+                module_documented = self.is_documentation(tree.body[0])
+                tree_objs = self.get_tree_objs(tree.body)
 
                 if not module_documented:
                     print(relative_path + " module has no documentation!")
@@ -64,6 +63,39 @@ class DocUMustCLI(object):
 
             printed = self.print_obj_warnings(relative_path + ":" + tree_obj['name'], tree_obj['nodes']) or printed
         return printed
+
+    def is_documentation(self, header):
+        """Returns False if module undocumented else True"""
+        try:
+            assert isinstance(header, ast.Expr)
+            assert isinstance(header.value, ast.Str)
+        except AssertionError:
+            return False
+        else:
+            return True
+
+    def get_tree_objs(self, tree_body):
+        """Returns a list of parsed objects metadata"""
+        tree_objs = []
+        for node in tree_body:
+            node_type = None
+            if isinstance(node, ast.ClassDef):
+                node_type = 'class'
+            elif isinstance(node, ast.FunctionDef):
+                node_type = 'function'
+
+            if node_type:
+                node_obj = {'name': node.name, 'lineno': node.lineno,
+                            'nodes': [], 'col_offset': node.col_offset,
+                            'type': node_type, 'documented': True}
+
+                is_documented = self.is_documentation(node.body[0])
+                if not is_documented:
+                    node_obj['documented'] = False
+                internal_node_objs = self.get_tree_objs(node.body)
+                node_obj['nodes'].extend(internal_node_objs)
+                tree_objs.append(node_obj)
+        return tree_objs
 
 
 def handle(command=None):
