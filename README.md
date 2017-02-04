@@ -1,4 +1,4 @@
-# DocUMust
+# DocUMust (or DocuMust?)
 #### Lets make sure you don't forget to document this time.
 
 - [About](#about)
