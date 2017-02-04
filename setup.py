@@ -1,13 +1,13 @@
 import os
-from setuptools import setup
+from setuptools import setup, find_packages
 
 with open(os.path.join(os.path.dirname(__file__), 'requirements.txt')) as required_file:
     required = required_file.read().splitlines()
 
 setup(
     name='DocUMust',
-    version='0.0.1',
-    packages=['documust'],
+    version='0.0.7',
+    packages=find_packages(),
     description="Lets make sure you don't forget to document this time.",
     author='Paul Litvak',
     author_email='litvakpol@012.net.il',

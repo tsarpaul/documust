@@ -23,18 +23,18 @@ class DocUMustCLI(object):
         """CLI handler"""
         parser = argparse.ArgumentParser(description=self.description)
 
-        parser.add_argument('-r', action='store_true', default=False, dest='recursively', help='Run recursively')
+        parser.add_argument('-f', action='store_true', default=False, dest='flat', help='Run non-recursively')
 
         args = parser.parse_args(argv)
 
-        self.recursively = args.recursively
+        self.flat = args.flat
 
         self.docu_warn()
 
     def docu_warn(self):
         """Warns about missing documentation"""
         warn_triggered = False
-        module_paths = path_utils.matches_in_path(self.pwd, self.recursively, "*.py")
+        module_paths = path_utils.matches_in_path(self.pwd, self.flat, "*.py")
         for module_path in module_paths:
             relative_path = module_path.replace(self.pwd, '')
 
@@ -53,7 +53,7 @@ class DocUMustCLI(object):
                     print('')
 
         if not warn_triggered:
-            print(crayons.green('Everything is documented! Great job!'))
+            print(crayons.green('Everything is documented! Good job!', bold=True))
 
     def print_obj_warnings(self, relative_path, tree_objs):
         """Prints undocumented objects, returns True if something was printed"""

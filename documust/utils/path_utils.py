@@ -5,8 +5,8 @@ import os
 from six.moves import queue
 
 
-def matches_in_path(path, recursively, match):
-    """Returns all matches to match in path, using BFS if enabled"""
+def matches_in_path(path, flat, match):
+    """Returns all matches to match in path, using BFS if flat is False"""
 
     matches = []
     dirs = queue.Queue()
@@ -19,7 +19,7 @@ def matches_in_path(path, recursively, match):
         for filename in fnmatch.filter(directory_tree[2], match):  # All files that match
             matches.append(os.path.join(current_path, filename))
 
-        if recursively:
+        if not flat:  # Search all folders
             for dirname in directory_tree[1]:  # All dirs
                 dirs.put(os.path.join(current_path, dirname))
 
