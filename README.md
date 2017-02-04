@@ -3,6 +3,8 @@
 
 ### Lets make sure you don't forget to document this time.
 
+[![PyPI](https://img.shields.io/pypi/v/documust.svg)](https://pypi.python.org/pypi/documust)
+
 - [About](#about)
 - [Installation](#installation)
 - [Usage](#usage)
