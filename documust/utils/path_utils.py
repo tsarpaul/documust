@@ -1,0 +1,32 @@
+"""Path related utilities"""
+
+import fnmatch
+import os
+import queue  # Queue in py2
+
+
+def matches_in_path(path, recursively, match):
+    """Returns all matches to match in path, using BFS if enabled"""
+
+    matches = []
+    dirs = queue.Queue()
+    dirs.put(path)
+
+    while not dirs.empty():
+        current_path = dirs.get()
+
+        directory_tree = next(os.walk(current_path))
+        for filename in fnmatch.filter(directory_tree[2], match):  # All files that match
+            matches.append(os.path.join(current_path, filename))
+
+        if recursively:
+            for dirname in directory_tree[1]:  # All dirs
+                dirs.put(os.path.join(current_path, dirname))
+
+    return matches
+
+
+def load_source(path):
+    """Loads a module source code by path"""
+    with open(path, 'r') as source:
+        return source.read()
